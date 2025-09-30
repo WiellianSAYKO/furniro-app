@@ -20,10 +20,14 @@ export async function POST (req: NextRequest) {
         message: 'successfully login account',
         data: response,
       })
-   } catch (error: any) {
-      return NextResponse.json({
-        message: error?.message,
-      });
-    
+   } catch (error) {
+    const message =
+    error instanceof SyntaxError
+      ? "Invalid JSON body"
+      : error instanceof Error
+      ? error.message
+      : "Unknown error";
+
+  return NextResponse.json({ message }, { status: 400 });    
    }
 }
