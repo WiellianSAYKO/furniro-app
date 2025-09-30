@@ -43,12 +43,13 @@ export default function Page() {
         objectId,
       }
     );
-  };
-  setAuthStore({
+      setAuthStore({
     _email: response?.data?.data?.email,
     _username: response?.data?.data?.name,
     _objectId: response?.data?.data?.objectId,
   });
+
+  };
 
   const formik = useFormik({
     initialValues: {
